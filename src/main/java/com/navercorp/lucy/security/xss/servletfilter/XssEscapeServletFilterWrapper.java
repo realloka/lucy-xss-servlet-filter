@@ -16,12 +16,13 @@
 
 package com.navercorp.lucy.security.xss.servletfilter;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 
 /**
  * @author todtod80
@@ -57,16 +58,15 @@ public class XssEscapeServletFilterWrapper extends HttpServletRequestWrapper {
 		return values;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Map<String, Object> getParameterMap() {
-		Map<String, Object> paramMap = super.getParameterMap();
-		Map<String, Object> newFilteredParamMap = new HashMap<String, Object>();
+	public Map<String, String[]> getParameterMap() {
+		Map<String, String[]> paramMap = super.getParameterMap();
+		Map<String, String[]> newFilteredParamMap = new HashMap<>();
 
-		Set<Map.Entry<String, Object>> entries = paramMap.entrySet();
-		for (Map.Entry<String, Object> entry : entries) {
+		Set<Map.Entry<String, String[]>> entries = paramMap.entrySet();
+		for (Map.Entry<String, String[]> entry : entries) {
 			String paramName = entry.getKey();
-			Object[] valueObj = (Object[])entry.getValue();
+			String[] valueObj = entry.getValue();
 			String[] filteredValue = new String[valueObj.length];
 			for (int index = 0; index < valueObj.length; index++) {
 				filteredValue[index] = doFilter(paramName, String.valueOf(valueObj[index]));
