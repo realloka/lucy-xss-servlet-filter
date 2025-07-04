@@ -1,5 +1,9 @@
 [![logo](https://raw.githubusercontent.com/naver/lucy-xss-filter/master/docs/images/logo/LUCYXSS_792x269px_white.jpg)](https://github.com/naver/lucy-xss-filter)
 
+## Spring boot 3.x용으로 변경
+- javax.servlet -> jakarta.servlet 으로 변경
+- 관련 라이브러리 현행화 (pom.xml)
+
 ## Overview
 이 라이브러리는 기존의 [lucy-xss-filter](https://github.com/naver/lucy-xss-filter)를 사용해도 여전히 아래와 같은 사유로 XSS 공격에 시달리고 있어 이에 대한 해결책으로 등장한 자바 서블릿 필터 기반의 라이브러리 입니다. 
 
